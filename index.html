@@ -6,66 +6,132 @@
 <title>Ati_Trust | فروشگاه زیبایی</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:tahoma;background:#fff5f9;color:#702044}
-header{background:linear-gradient(135deg,#f6a5c0,#d63384);color:white;text-align:center;padding:30px 15px}
-header h1{font-size:32px;margin:5px}
-nav{background:white;text-align:center;padding:15px}
-nav a{color:#c2185b;text-decoration:none;margin:10px}
-main{padding:20px;text-align:center}
-.products{display:flex;flex-wrap:wrap;justify-content:center;gap:15px}
-.card{background:white;border-radius:18px;padding:18px;width:155px;box-shadow:0 4px 15px #edc4d5}
-.pic{font-size:50px}
-.price{color:#c2185b;font-weight:bold}
-button{background:#e84d88;color:white;border:0;padding:11px;border-radius:10px;cursor:pointer}
-#cart{background:white;border-radius:15px;padding:15px;margin:25px auto;max-width:500px}
-input{padding:12px;border:1px solid pink;border-radius:8px;margin:5px;width:90%}
-footer{background:#f6a5c0;color:white;text-align:center;padding:20px;margin-top:30px}
+body{margin:0;font-family:Tahoma,Arial;background:#fff7fa;color:#333}
+header{background:#ec4899;color:white;text-align:center;padding:24px 12px}
+header h1{margin:0 0 8px;font-size:30px}
+header p{margin:0}
+nav{background:white;padding:12px;text-align:center;position:sticky;top:0;box-shadow:0 2px 8px #0001}
+nav a{color:#db2777;text-decoration:none;margin:0 10px;font-weight:bold}
+.hero{margin:18px;padding:28px 16px;background:linear-gradient(135deg,#fbcfe8,#fce7f3);border-radius:18px;text-align:center}
+.hero h2{color:#9d174d}
+button{background:#ec4899;color:white;border:0;padding:11px 16px;border-radius:10px;cursor:pointer;font-size:14px}
+input{padding:12px;border:1px solid #f3b4d1;border-radius:10px;font-size:15px;width:100%;margin:8px 0}
+.container{padding:12px;max-width:1000px;margin:auto}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 3px 12px #0001;padding-bottom:12px}
+.card img{width:100%;height:145px;object-fit:cover;background:#fce7f3}
+.card h3{font-size:15px;margin:10px}
+.price{color:#db2777;font-weight:bold;margin:10px}
+.card button{margin:0 10px;width:calc(100% - 20px)}
+.panel{background:white;margin:18px 0;padding:16px;border-radius:15px;box-shadow:0 3px 12px #0001}
+footer{background:#831843;color:white;text-align:center;padding:20px;margin-top:25px}
+@media(min-width:650px){.products{grid-template-columns:repeat(4,minmax(0,1fr))}.card img{height:190px}}
 </style>
 </head>
 <body>
+
 <header>
-<h1>🎀 Ati_Trust 🎀</h1>
-<p>زیبایی تو، افتخار ماست 🩷</p>
+<h1>🌸 Ati_Trust 🌸</h1>
+<p>زیبایی تو، اعتماد ما</p>
 </header>
+
 <nav>
 <a href="#products">محصولات</a>
-<a href="#cart">سبد خرید</a>
+<a href="#cart">سبد خرید 🛒</a>
+<a href="#contact">تماس با ما</a>
 </nav>
-<main>
-<h2 id="products">✨ محصولات فروشگاه ✨</h2>
-<div class="products">
-<div class="card">
-<div class="pic">💄</div><h3>رژ لب</h3>
-<p class="price">۲۵۰٬۰۰۰ تومان</p>
-<button onclick="add('رژ لب',250000)">افزودن به سبد</button>
-</div>
-<div class="card">
-<div class="pic">🧴</div><h3>کرم پوست</h3>
-<p class="price">۳۵۰٬۰۰۰ تومان</p>
-<button onclick="add('کرم پوست',350000)">افزودن به سبد</button>
-</div>
-<div class="card">
-<div class="pic">💅</div><h3>لاک ناخن</h3>
-<p class="price">۱۵۰٬۰۰۰ تومان</p>
-<button onclick="add('لاک ناخن',150000)">افزودن به سبد</button>
-</div>
-</div>
-<section id="cart">
-<h2>🛒 سبد خرید</h2>
-<div id="items">سبد خرید خالی است.</div>
+
+<section class="hero">
+<h2>به دنیای زیبایی خوش آمدی 💗</h2>
+<p>محصولات آرایشی و بهداشتی را با خیال راحت بررسی کن.</p>
+<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">مشاهده محصولات</button>
+</section>
+
+<main class="container">
+<h2>🔎 جست‌وجوی محصولات</h2>
+<input id="search" placeholder="نام محصول را وارد کن..." oninput="showProducts()">
+
+<h2 id="products">💄 محصولات فروشگاه</h2>
+<div class="products" id="productList"></div>
+
+<section class="panel" id="cart">
+<h2>🛒 سبد خرید من</h2>
+<div id="cartList">سبد خرید خالی است.</div>
 <h3 id="total">مجموع: ۰ تومان</h3>
-<input id="name" placeholder="نام شما">
-<input id="phone" placeholder="شماره تماس">
-<button onclick="order()">ثبت سفارش</button>
-<p id="message"></p>
+<button onclick="checkout()">ثبت سفارش</button>
+</section>
+
+<section class="panel" id="contact">
+<h2>📦 اطلاعات سفارش</h2>
+<p>برای ثبت سفارش، نام و شماره تماس خود را وارد کن.</p>
+<input id="customerName" placeholder="نام شما">
+<input id="customerPhone" type="tel" placeholder="شماره تماس">
+<p style="font-size:12px;color:#777">برای ارسال سفارش، ابتدا باید روش دریافت سفارش‌ها را تنظیم کنیم.</p>
 </section>
 </main>
-<footer>🩷 Ati_Trust | همراه زیبایی شما</footer>
+
+<footer>
+<p>🌸 Ati_Trust 🌸</p>
+<p>فروشگاه آرایشی و بهداشتی</p>
+</footer>
+
 <script>
+const products=[
+{id:1,name:"رژ لب",price:250000,img:"https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=500&q=80"},
+{id:2,name:"عطر زنانه",price:450000,img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=500&q=80"},
+{id:3,name:"کرم مراقبت پوست",price:320000,img:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=500&q=80"},
+{id:4,name:"لوازم آرایش",price:380000,img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=500&q=80"}
+];
 let cart=[];
-function add(name,price){
-cart.push({name,price});
-show();
+const money=n=>n.toLocaleString("fa-IR")+" تومان";
+
+function showProducts(){
+const q=document.getElementById("search").value.trim().toLowerCase();
+const filtered=products.filter(p=>p.name.toLowerCase().includes(q));
+document.getElementById("productList").innerHTML=filtered.map(p=>`
+<div class="card">
+<img src="${p.img}" alt="${p.name}" loading="lazy">
+<h3>${p.name}</h3>
+<div class="price">${money(p.price)}</div>
+<button onclick="addCart(${p.id})">افزودن به سبد خرید</button>
+</div>`).join("")||"<p>محصولی پیدا نشد.</p>";
 }
-function show(){
-document.getElementById
+
+function addCart(id){
+const p=products.find(x=>x.id===id);
+const item=cart.find(x=>x.id===id);
+if(item)item.qty++;
+else cart.push({...p,qty:1});
+showCart();
+}
+
+function showCart(){
+const list=document.getElementById("cartList");
+if(!cart.length)list.innerHTML="سبد خرید خالی است.";
+else list.innerHTML=cart.map(p=>`
+<div style="padding:8px 0;border-bottom:1px solid #fce7f3">
+${p.name} — ${money(p.price)} × ${p.qty}
+<button onclick="removeCart(${p.id})" style="padding:5px 9px">حذف</button>
+</div>`).join("");
+const total=cart.reduce((s,p)=>s+p.price*p.qty,0);
+document.getElementById("total").textContent="مجموع: "+money(total);
+}
+
+function removeCart(id){
+cart=cart.filter(p=>p.id!==id);
+showCart();
+}
+
+function checkout(){
+if(!cart.length){alert("سبد خرید خالی است!");return;}
+const name=document.getElementById("customerName").value.trim();
+const phone=document.getElementById("customerPhone").value.trim();
+if(!name||!phone){document.getElementById("contact").scrollIntoView({behavior:"smooth"});alert("لطفاً نام و شماره تماس را وارد کن.");return;}
+alert("اطلاعات وارد شد؛ اما سفارش هنوز ارسال نشده است. برای دریافت واقعی سفارش‌ها باید فروشگاه را به واتساپ یا یک سرویس ثبت سفارش متصل کنیم.");
+}
+
+showProducts();
+showCart();
+</script>
+</body>
+</html>ص
