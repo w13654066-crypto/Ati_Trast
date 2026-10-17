@@ -1,1 +1,71 @@
-
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ati_Trust | فروشگاه زیبایی</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:tahoma;background:#fff5f9;color:#702044}
+header{background:linear-gradient(135deg,#f6a5c0,#d63384);color:white;text-align:center;padding:30px 15px}
+header h1{font-size:32px;margin:5px}
+nav{background:white;text-align:center;padding:15px}
+nav a{color:#c2185b;text-decoration:none;margin:10px}
+main{padding:20px;text-align:center}
+.products{display:flex;flex-wrap:wrap;justify-content:center;gap:15px}
+.card{background:white;border-radius:18px;padding:18px;width:155px;box-shadow:0 4px 15px #edc4d5}
+.pic{font-size:50px}
+.price{color:#c2185b;font-weight:bold}
+button{background:#e84d88;color:white;border:0;padding:11px;border-radius:10px;cursor:pointer}
+#cart{background:white;border-radius:15px;padding:15px;margin:25px auto;max-width:500px}
+input{padding:12px;border:1px solid pink;border-radius:8px;margin:5px;width:90%}
+footer{background:#f6a5c0;color:white;text-align:center;padding:20px;margin-top:30px}
+</style>
+</head>
+<body>
+<header>
+<h1>🎀 Ati_Trust 🎀</h1>
+<p>زیبایی تو، افتخار ماست 🩷</p>
+</header>
+<nav>
+<a href="#products">محصولات</a>
+<a href="#cart">سبد خرید</a>
+</nav>
+<main>
+<h2 id="products">✨ محصولات فروشگاه ✨</h2>
+<div class="products">
+<div class="card">
+<div class="pic">💄</div><h3>رژ لب</h3>
+<p class="price">۲۵۰٬۰۰۰ تومان</p>
+<button onclick="add('رژ لب',250000)">افزودن به سبد</button>
+</div>
+<div class="card">
+<div class="pic">🧴</div><h3>کرم پوست</h3>
+<p class="price">۳۵۰٬۰۰۰ تومان</p>
+<button onclick="add('کرم پوست',350000)">افزودن به سبد</button>
+</div>
+<div class="card">
+<div class="pic">💅</div><h3>لاک ناخن</h3>
+<p class="price">۱۵۰٬۰۰۰ تومان</p>
+<button onclick="add('لاک ناخن',150000)">افزودن به سبد</button>
+</div>
+</div>
+<section id="cart">
+<h2>🛒 سبد خرید</h2>
+<div id="items">سبد خرید خالی است.</div>
+<h3 id="total">مجموع: ۰ تومان</h3>
+<input id="name" placeholder="نام شما">
+<input id="phone" placeholder="شماره تماس">
+<button onclick="order()">ثبت سفارش</button>
+<p id="message"></p>
+</section>
+</main>
+<footer>🩷 Ati_Trust | همراه زیبایی شما</footer>
+<script>
+let cart=[];
+function add(name,price){
+cart.push({name,price});
+show();
+}
+function show(){
+document.getElementById
